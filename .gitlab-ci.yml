@@ -1,4 +1,9 @@
 image: 'maven:latest'
+
+
+services:
+  - selenium/standalone-firefox
+
 stages:
   - test
   - package
@@ -6,12 +11,16 @@ stages:
 test:
   stage: test
   script:
-    - "mvn clean verify -Dsonar.host.url=http://192.168.99.100:9000"
+    - |
+      mvn clean verify \
+      -Dsonar.host.url=http://192.168.99.100:9000 \
+      -DbaseUrl=http://maven:8080/ \
+      -DhubUrl=http://selenium__standalone-firefox:4444/
 
 package:
   stage: package
   script:
-    - mvn package -DskipTests
+    - "mvn package -DskipTests"
   artifacts:
     paths:
       - "**/target/*.war"
