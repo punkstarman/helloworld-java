@@ -3,7 +3,7 @@ image: 'maven:latest'
 cache:
   key: 'all'
   paths:
-    - '~/.m2/'
+    - '/root/.m2/'
 
 services:
   - selenium/standalone-firefox
