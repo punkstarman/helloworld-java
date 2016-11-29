@@ -1,0 +1,44 @@
+version: "2"
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce'
+    restart: always
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://192.168.99.100:8000'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2200
+    ports:
+      - '8000:8000'
+      - '4430:443'
+      - '2200:22'
+    volumes:
+      - 'gitlab_conf:/etc/gitlab'
+      - 'gitlab_log:/var/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
+
+  gitlab-runner:
+    image: 'gitlab/gitlab-runner:alpine'
+    restart: always
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+
+  sonarqube:
+    image: 'sonarqube'
+    restart: always
+    ports:
+      - '9000:9000'
+      - '9092:9092'
+    volumes:
+      - 'sonarqube_data:/opt/sonarqube/data'
+      - 'sonarqube_extensions:/opt/sonarqube/extensions'
+volumes:
+  gitlab_conf:
+    driver: local
+  gitlab_log:
+    driver: local
+  gitlab_data:
+    driver: local
+  sonarqube_data:
+    driver: local
+  sonarqube_extensions:
+    driver: local
