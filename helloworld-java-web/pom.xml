@@ -83,6 +83,19 @@
               <update>true</update>
             </configuration>
           </execution>
+          <execution>
+            <id>undeploy-tomcat</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>undeploy</goal>
+            </goals>
+            <configuration>
+              <path>/helloworld</path>
+              <username>admin</username>
+              <password>admin</password>
+              <update>true</update>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -104,12 +117,21 @@
             <artifactId>tomcat7-maven-plugin</artifactId>
             <executions>
               <execution>
+                <id>deploy-tomcat</id>
+                <phase>none</phase>
+              </execution>
+              <execution>
+                <id>undeploy-tomcat</id>
+                <phase>none</phase>
+              </execution>
+              <execution>
                 <id>start-tomcat</id>
                 <phase>pre-integration-test</phase>
                 <goals>
                   <goal>run-war-only</goal>
                 </goals>
                 <configuration>
+                  <path>/</path>
                   <fork>true</fork>
                 </configuration>
               </execution>
@@ -127,7 +149,7 @@
     </profile>
     
     <profile>
-      <id>remote-it</id>
+      <id>gitlab</id>
       
       <properties>
         <hubUrl>http://localhost:4444/wd/hub</hubUrl>
