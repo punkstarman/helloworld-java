@@ -1,12 +1,24 @@
-image: 'maven:3.3.9'
+image: 'maven:latest'
 
 cache:
   key: '$CI_BUILD_REF_NAME'
   paths:
     - '/root/.m2/'
 
+services:
+  - selenium/standalone-firefox-debug
+
+stages:
+  - test
+  - package
+
+test:
+  stage: test
+  script:
+    - "mvn clean verify -Dsonar.host.url=http://172.17.0.1:9000 -DbaseUrl=http://172.17.0.1:8080/helloworld/ -DhubUrl=http://selenium__standalone-firefox-debug:4444/wd/hub"
 
 package:
+  stage: package
   script:
     - "mvn package -DskipTests"
   artifacts:
