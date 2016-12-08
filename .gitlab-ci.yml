@@ -6,7 +6,7 @@ cache:
     - '/root/.m2/'
 
 services:
-  - selenium/standalone-firefox
+  - selenium/standalone-firefox-debug
 
 stages:
   - test
