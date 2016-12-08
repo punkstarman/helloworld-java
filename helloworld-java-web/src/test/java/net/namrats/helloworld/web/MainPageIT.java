@@ -6,6 +6,7 @@ import java.net.URL;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,11 @@ public class MainPageIT {
 		} else {
 			driver = new RemoteWebDriver(new URL(hubUrlString), DesiredCapabilities.firefox());
 		}
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		driver.quit();
 	}
 
 	@Test

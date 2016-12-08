@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://192.168.99.100:8000'
+        external_url 'http://172.17.0.1:8000'
         gitlab_rails['gitlab_shell_ssh_port'] = 2200
     ports:
       - '8000:8000'
@@ -19,6 +19,12 @@ services:
   gitlab-runner:
     image: 'gitlab/gitlab-runner:alpine'
     restart: always
+    environment:
+      REGISTER_NON_INTERACTIVE: ''
+      CI_SERVER_URL: 'http://172.17.0.1:8000/'
+      RUNNER_NAME: 'docker-runner'
+      RUNNER_EXECUTOR: 'docker'
+      DOCKER_IMAGE: 'ruby:2.1'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
 

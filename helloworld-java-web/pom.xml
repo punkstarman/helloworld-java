@@ -66,8 +66,7 @@
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <address>${baseUrl}</address>
-          <path>/${project.build.finalName}</path>
+          <path>/</path>
         </configuration>
         <executions>
           <execution>
