@@ -67,7 +67,7 @@
         <version>2.2</version>
         <configuration>
           <path>/helloworld</path>
-          <url>http://tomcat:8080/manager/text</url>
+          <url>http://172.17.0.1:8080/manager/text</url>
         </configuration>
         <executions>
           <execution>

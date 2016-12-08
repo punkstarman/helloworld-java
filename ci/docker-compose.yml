@@ -37,6 +37,11 @@ services:
     volumes:
       - 'sonarqube_data:/opt/sonarqube/data'
       - 'sonarqube_extensions:/opt/sonarqube/extensions'
+
+  tomcat:
+    image: 'my/tomcat'
+    ports:
+      - '8080:8080'
 volumes:
   gitlab_conf:
     driver: local
