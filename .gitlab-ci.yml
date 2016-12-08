@@ -1,13 +1,14 @@
-image: 'maven:latest'
+image: 'maven:3.3.9'
 
 cache:
   key: '$CI_BUILD_REF_NAME'
   paths:
     - '/root/.m2/'
 
-build:
+
+package:
   script:
-    - "mvn clean compile"
+    - "mvn package -DskipTests"
   artifacts:
     paths:
       - "**/target/*.war" 
