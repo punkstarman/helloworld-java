@@ -7,6 +7,7 @@ cache:
 
 services:
   - selenium/standalone-firefox-debug
+  - tomcat:8
 
 stages:
   - test
@@ -15,7 +16,7 @@ stages:
 test:
   stage: test
   script:
-    - "mvn clean verify -Dsonar.host.url=http://172.17.0.1:9000 -DbaseUrl=http://maven:8080/ -DhubUrl=http://selenium__standalone-firefox-debug:4444/wd/hub"
+    - "mvn clean verify -Dsonar.host.url=http://172.17.0.1:9000 -DbaseUrl=http://tomcat:8080/ -DhubUrl=http://selenium__standalone-firefox-debug:4444/wd/hub"
 
 package:
   stage: package

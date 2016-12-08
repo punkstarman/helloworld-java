@@ -66,25 +66,19 @@
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <path>/</path>
+          <path>/helloworld</path>
+          <url>http://tomcat:8080/manager/text</url>
         </configuration>
         <executions>
           <execution>
-            <id>start-tomcat</id>
+            <id>deploy-tomcat</id>
             <phase>pre-integration-test</phase>
             <goals>
-              <goal>run-war-only</goal>
+              <goal>deploy-only</goal>
             </goals>
             <configuration>
-              <fork>true</fork>
+              <path>/</path>
             </configuration>
-          </execution>
-          <execution>
-            <id>stop-tomcat</id>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>shutdown</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
