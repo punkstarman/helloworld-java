@@ -27,5 +27,6 @@
   section below since they are intended for use with the examples web
   application.
 -->
-  <user username="admin" password="admin" roles="manager-gui"/>
+  <role rolename="manager-gui"/>
+  <user username="admin" password="admin" roles="manager-gui,manager-script"/>
 </tomcat-users>
